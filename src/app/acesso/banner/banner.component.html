@@ -1,6 +1,5 @@
-<button (click)="toggleEstado()">Teste</button>
 <div class="banner-background">
     <img *ngFor="let imagem of imagens"
-     src="imagem.url" 
+     [src]="imagem.url" 
      [@banner]="imagem.estado" />
 </div>
