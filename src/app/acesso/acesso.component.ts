@@ -13,7 +13,20 @@ import { trigger, transition, animate, style, state } from '@angular/animations'
       transition('void => criado', [
         style({
           opacity: 0,
-          transform: 'translate(0, -50px)'
+          transform: 'translate(-50px, 0)'
+        }),
+        animate('500ms 0s ease-in-out') //duraçao, delay e aceleracao
+      ])
+    ]),
+
+    trigger('animacao-painel', [
+      state('criado', style({
+        opacity: 1
+      })),
+      transition('void => criado', [
+        style({
+          opacity: 0,
+          transform: 'translate(50px, 0)'
         }),
         animate('500ms 0s ease-in-out') //duraçao, delay e aceleracao
       ])
