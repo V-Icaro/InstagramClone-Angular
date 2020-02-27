@@ -12,11 +12,17 @@
         </div>
         <div class="modal-body">
           <input 
+            type="file"
+            class="form-control"
+            accept="image/*"
+            (change)="preparaimagemUpload($event)"
+            />
+          <input 
             type="text"
             placeholder="Titulo da publicação"
             class="form-control"
             formControlName="titulo"
-          >
+           />
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
