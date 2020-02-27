@@ -3,6 +3,10 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Bd } from 'src/app/bd.service';
 import * as firebase from 'firebase'
 import { Progresso } from 'src/app/progresso.service';
+import { Observable, Subject } from 'rxjs';
+import { interval } from 'rxjs';
+import { takeUntil } from 'rxjs/operators'
+
 
 @Component({
   selector: 'app-incluir-publicacao',
@@ -14,6 +18,9 @@ export class IncluirPublicacaoComponent implements OnInit {
   public email: string
 
   private imagem: any
+
+  public progressoPublicacao: string = 'pendente'
+  public porcetagemUpload: number
 
   public formulario: FormGroup = new FormGroup({
     'titulo': new FormControl(null)
@@ -37,8 +44,25 @@ export class IncluirPublicacaoComponent implements OnInit {
       imagem: this.imagem[0]
     })
 
-    console.log(this.progresso.status)
-    console.log(this.progresso.estado)
+    let acompanhamentoUpload = interval(1500);
+    let continua = new Subject<boolean>();
+    continua.next (true);
+ 
+    acompanhamentoUpload.pipe (
+      takeUntil (continua)
+    ).subscribe (() => {
+      console.log (this.progresso.estado);
+      console.log (this.progresso.status);
+      this.progressoPublicacao = 'andamento'
+
+      this.porcetagemUpload = Math.round((this.progresso.estado.bytesTranferred / this.progresso.estado.totalBytes) * 100)
+
+      if (this.progresso.status === 'concluido') {
+        this.progressoPublicacao = 'concluido'
+        continua.next (false);
+      }
+    });
+
   }
 
   preparaimagemUpload($event: Event): void {
