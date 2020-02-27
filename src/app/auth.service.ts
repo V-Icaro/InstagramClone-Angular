@@ -50,6 +50,10 @@ export class Auth {
             this.tokei_id = localStorage.getItem('idToken')
         }
         
+        if(this.tokei_id === undefined) {
+            this.router.navigate(['/'])
+        }
+
         return this.tokei_id !== undefined
     }
 
