@@ -52,4 +52,14 @@ export class Auth {
         
         return this.tokei_id !== undefined
     }
+
+    public sair(): void{
+        firebase.auth().signOut()
+            .then(() => {
+                localStorage.removeItem('idToken')
+                this.tokei_id = undefined
+                this.router.navigate(['/'])
+            })
+        
+    }
 }
