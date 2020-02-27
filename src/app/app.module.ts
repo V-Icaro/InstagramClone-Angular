@@ -14,6 +14,7 @@ import { AuthGuard } from './auth.guard.service';
 import { HomeComponent } from './home/home.component';
 import { PublicacoesComponent } from './home/publicacoes/publicacoes.component';
 import { IncluirPublicacaoComponent } from './home/incluir-publicacao/incluir-publicacao.component';
+import { Bd } from './bd.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { IncluirPublicacaoComponent } from './home/incluir-publicacao/incluir-pu
   ],
   providers: [
     Auth,
-    AuthGuard
+    AuthGuard,
+    Bd
   ],
   bootstrap: [AppComponent]
 })
