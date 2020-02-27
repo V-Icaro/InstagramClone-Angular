@@ -1,9 +1,14 @@
 import { Usuario } from './acesso/usuario.model'
 import * as firebase from 'firebase'
+import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
 
+@Injectable()
 export class Auth {
 
     public tokei_id: string
+
+    constructor(private router: Router){}
 
     public cadastrarUsuario(usuario: Usuario): Promise<any> {
         console.log('Chegamos até o serviço: ' , usuario)
@@ -32,9 +37,14 @@ export class Auth {
                 firebase.auth().currentUser.getIdToken()
                     .then((idToken: string) => {
                         this.tokei_id = idToken
-                        console.log(this.tokei_id)
+                        this.router.navigate(['/home'])
                     })
             })
             .catch((error: any) => console.log(error))
+    }
+
+    public autenticado(): boolean {
+        
+        return this.tokei_id !== undefined
     }
 }
