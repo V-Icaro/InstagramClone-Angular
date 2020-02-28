@@ -37,6 +37,8 @@ export class IncluirPublicacaoComponent implements OnInit {
     })
   }
 
+  
+
   public publicar(): void {
     this.bd.publicar({
       email: this.email,
@@ -51,8 +53,8 @@ export class IncluirPublicacaoComponent implements OnInit {
     acompanhamentoUpload.pipe (
       takeUntil (continua)
     ).subscribe (() => {
-      console.log (this.progresso.estado);
-      console.log (this.progresso.status);
+      //console.log (this.progresso.estado);
+      //console.log (this.progresso.status);
       this.progressoPublicacao = 'andamento'
 
       this.porcetagemUpload = Math.round((this.progresso.estado.bytesTranferred / this.progresso.estado.totalBytes) * 100)
@@ -61,6 +63,7 @@ export class IncluirPublicacaoComponent implements OnInit {
         this.progressoPublicacao = 'concluido'
         continua.next (false);
       }
+      
     });
 
   }
