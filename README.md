@@ -4,7 +4,11 @@ Clone do instagram feito com [Angular CLI](https://github.com/angular/angular-cl
 
 ## Testar o projeto
 
-Para testar, clone o repositório e execute esses comandos :
+Projeto está hospedado na aws : http://instagram-clone-angular.s3-web…
+
+ou
+
+Clone o repositório e execute esses comandos :
 
 cd /InstagramClone-Angular
 
